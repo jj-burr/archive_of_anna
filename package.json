@@ -1,6 +1,6 @@
 {
   "name": "archive_of_anna",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unofficial Anna's Archive API written in JS.",
   "main": "index.js",
   "keywords": [

@@ -4,7 +4,7 @@ const downloadHelper = require('./helpers/download-helper');
 const searchHelper = require('./helpers/search-helper');
 
 // Libraries
-const axiosHelper = require('./libraries/axios-helper');
+const axiosHelper = require('./helpers/axios-helper');
 
 /**
  * The API wrapper of Anna's Archive.
@@ -58,18 +58,62 @@ class ArchiveOfAnna {
     return downloadHelper.ipfs(ipfsLinks, name, path);
   }
 
-  /**
-   * It takes a list of links to Libgen, and downloads the files
-   * @param {Array} libgenLinks - An array of links to the libgen mirrors.
-   * @param {String|undefined} fork - The fork to download the file from.
-   * @param {String|undefined} name - Name for the file to be saved as.
-   * @param {String} path - Path to save the file to.
-   * @return {File} A promise.
-   * TODO: Fix Documentation
-   */
-  static downloadFileViaLibgen(libgenLinks, fork = undefined, name = undefined, path = DOWNLOAD_PATH) {
-    return downloadHelper.libgenDownload(libgenLinks, fork, name, path);
-  }
+/**
+ * It takes a list of links to Libgen, and downloads the files
+ * @param {Array} libgenLinks - An array of links to the libgen mirrors.
+ * @param {String|undefined} fork - The fork to download the file from.
+ * @param {String|undefined} name - Name for the file to be saved as.
+ * @param {String} path - Path to save the file to.
+ * @return {File} A promise.
+ * TODO: Fix Documentation
+ */
+static downloadFileViaLibgen(libgenLinks, fork = undefined, name = undefined, path = DOWNLOAD_PATH) {
+  return downloadHelper.libgenDownload(libgenLinks, fork, name, path);
+}
+
+/**
+ * Downloads a file by MD5 hash using Fast Download API
+ * @param {String} md5 - MD5 hash of the content
+ * @param {String|undefined} name - Optional custom name for the file
+ * @param {String} path - Directory path to save the file
+ * @param {String} [secretKey] - Optional secret key for API access
+ * @param {String} [preferredSource] - Preferred download source ('ipfs', 'libgenRsFork', 'libgenLiFork', 'zLibTor')
+ * @return {Promise<String>} Path of the downloaded file
+ */
+static async downloadByMd5(md5, name = undefined, path = DOWNLOAD_PATH, secretKey = '', preferredSource = 'ipfs') {
+  return downloadHelper.downloadByMd5(md5, name, path, secretKey, preferredSource);
+}
+
+/**
+ * Gets IPFS links for a given MD5 hash using Fast Download API
+ * @param {String} md5 - MD5 hash of the content
+ * @param {String} [secretKey] - Optional secret key for API access
+ * @return {Promise<Array>} Array of IPFS URLs
+ */
+static async getIpfsLinksByMd5(md5, secretKey = '') {
+  return downloadHelper.getIpfsLinksByMd5(md5, secretKey);
+}
+
+/**
+ * Gets all download URLs for a given MD5 hash using Fast Download API
+ * @param {String} md5 - MD5 hash of the content
+ * @param {String} [secretKey] - Optional secret key for API access
+ * @return {Promise<Object>} Object with categorized download URLs
+ */
+static async getDownloadUrlsByMd5(md5, secretKey = '') {
+  return downloadHelper.getDownloadUrlsByMd5(md5, secretKey);
+}
+
+/**
+ * Gets all available download sources for a given MD5 hash using Fast Download API
+ * @param {String} md5 - MD5 hash of the content
+ * @param {String} [secretKey] - Optional secret key for API access
+ * @return {Promise<Object>} Object with counts and URLs for each source type
+ */
+static async getAllDownloadSources(md5, secretKey = '') {
+  const fastDownloadService = require('./services/fast-download-service');
+  return fastDownloadService.getAllDownloadSources(md5, secretKey);
+}
 }
 
 module.exports = ArchiveOfAnna;

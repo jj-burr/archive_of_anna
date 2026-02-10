@@ -1,5 +1,6 @@
-const axiosHelper = require('../libraries/axios-helper');
-const fileHelper = require('../libraries/file-helper');
+const axiosHelper = require('./axios-helper');
+const fileHelper = require('./file-helper');
+const fastDownloadService = require('../services/fast-download-service');
 
 const getSubstringIndicesForFilename = (contentDispositionHeader) => {
   const filenameHeader = 'filename="';
@@ -47,9 +48,91 @@ const downloadFileFromGivenLinks = async (links, name, path) => {
 };
 
 const downloadHelper = {
+  /**
+   * Downloads a file using IPFS links
+   * @param {Array} ipfsLinks - Array of IPFS URLs
+   * @param {String} name - Optional custom name for the file
+   * @param {String} path - Directory path to save the file
+   * @return {Promise<String>} Path of the downloaded file
+   */
   ipfs: async (ipfsLinks, name, path) => await downloadFileFromGivenLinks(ipfsLinks, name, path),
-  libgenDownload: (libgenLinks, fork, name, path) => {},
-  torDownload: () => {}, // TODO: Not in current scope. Need to check if axios can be self-contained for Tor requests.
+
+  /**
+   * Downloads a file using Library Genesis links
+   * @param {Array} libgenLinks - Array of LibGen URLs
+   * @param {String} fork - Which fork ('rs' or 'li')
+   * @param {String} name - Optional custom name for the file
+   * @param {String} path - Directory path to save the file
+   * @return {Promise<String>} Path of the downloaded file
+   */
+  libgenDownload: async (libgenLinks, fork, name, path) => await downloadFileFromGivenLinks(libgenLinks, name, path),
+
+  /**
+   * Downloads a file using Tor-based links (not implemented yet)
+   * @param {Array} torLinks - Array of Tor URLs
+   * @param {String} name - Optional custom name for the file
+   * @param {String} path - Directory path to save the file
+   */
+  torDownload: async (torLinks, name, path) => {
+    throw new Error('Tor download not yet implemented. Need to check if axios can be self-contained for Tor requests.');
+  },
+
+  /**
+   * Downloads a file by MD5 hash using Fast Download API
+   * @param {String} md5 - MD5 hash of the content
+   * @param {String} name - Optional custom name for the file
+   * @param {String} path - Directory path to save the file
+   * @param {String} [secretKey] - Optional secret key for API access
+   * @param {String} [preferredSource] - Preferred download source ('ipfs', 'libgenRsFork', 'libgenLiFork')
+   * @return {Promise<String>} Path of the downloaded file
+   */
+  downloadByMd5: async (md5, name, path, secretKey = '', preferredSource = 'ipfs') => {
+    try {
+      const downloadSources = await fastDownloadService.getAllDownloadSources(md5, secretKey);
+      
+      if (downloadSources.total === 0) {
+        throw new Error(`No download sources found for MD5: ${md5}`);
+      }
+
+      // Try preferred source first, then fallback to others in order
+      const sources = [preferredSource, 'ipfs', 'libgenRsFork', 'libgenLiFork', 'zLibTor'];
+      
+      for (const source of sources) {
+        const sourceData = downloadSources[source];
+        if (sourceData && sourceData.count > 0) {
+          try {
+            return await downloadFileFromGivenLinks(sourceData.urls, name, path);
+          } catch (error) {
+            console.warn(`Failed to download from ${source}, trying next source: ${error.message}`);
+          }
+        }
+      }
+
+      throw new Error(`All download sources failed for MD5: ${md5}`);
+    } catch (error) {
+      throw new Error(`MD5 download failed: ${error.message}`);
+    }
+  },
+
+  /**
+   * Gets IPFS links for a given MD5 hash
+   * @param {String} md5 - MD5 hash of the content
+   * @param {String} [secretKey] - Optional secret key for API access
+   * @return {Promise<Array>} Array of IPFS URLs
+   */
+  getIpfsLinksByMd5: async (md5, secretKey = '') => {
+    return await fastDownloadService.getIpfsLinks(md5, secretKey);
+  },
+
+  /**
+   * Gets all download URLs for a given MD5 hash
+   * @param {String} md5 - MD5 hash of the content
+   * @param {String} [secretKey] - Optional secret key for API access
+   * @return {Promise<Object>} Object with categorized download URLs
+   */
+  getDownloadUrlsByMd5: async (md5, secretKey = '') => {
+    return await fastDownloadService.getDownloadUrls(md5, secretKey);
+  }
 };
 
 module.exports = downloadHelper;
