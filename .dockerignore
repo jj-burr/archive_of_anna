@@ -1,0 +1,14 @@
+node_modules
+.git
+.nyc_output
+coverage
+reports
+tmp
+.claude
+nul
+web/settings.json
+*.md
+.eslintrc.json
+.prettierrc.json
+.jshintrc
+.env

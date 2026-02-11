@@ -1,0 +1,119 @@
+<%- include('partials/header', { pageTitle: 'Settings - Archive of Anna', activePage: 'settings' }) %>
+
+<h1>Settings</h1>
+
+<% if (saved) { %>
+  <div class="alert alert-success">
+    Settings saved successfully.
+  </div>
+<% } %>
+
+<% if (error) { %>
+  <div class="alert alert-error">
+    <%= error %>
+  </div>
+<% } %>
+
+<form method="POST" action="/settings" class="settings-form">
+
+  <!-- Download Path -->
+  <div class="settings-section">
+    <h2>Download Path</h2>
+    <p class="help-text">
+      Directory where downloaded files will be saved. Can be an absolute path
+      (e.g. <code>C:\Users\you\Downloads</code>) or relative to the project root
+      (e.g. <code>./downloads/</code>).
+    </p>
+    <div class="form-group">
+      <label for="downloadPath">Download Path</label>
+      <input
+        type="text"
+        id="downloadPath"
+        name="downloadPath"
+        value="<%= settings.downloadPath %>"
+        placeholder="./downloads/"
+      >
+    </div>
+  </div>
+
+  <!-- Fast Download API Status -->
+  <div class="settings-section">
+    <h2>Fast Download API</h2>
+    <div class="status-card">
+      <% if (secretKeyConfigured) { %>
+        <span class="status-badge status-ok">Configured</span>
+        <p>
+          The <code>SECRET_KEY</code> is set in <code>src/config/.env</code>.
+          The Fast Download API will be used when available, with fallback to
+          web scraping.
+        </p>
+      <% } else { %>
+        <span class="status-badge status-warn">Not Configured</span>
+        <p>
+          No <code>SECRET_KEY</code> found. The Fast Download API is unavailable.
+          Downloads will use web scraping to find download links.
+        </p>
+        <p class="help-text">
+          To enable it, add <code>SECRET_KEY=your_key_here</code> to
+          <code>src/config/.env</code> and restart the server.
+        </p>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Preferred Download Source -->
+  <div class="settings-section">
+    <h2>Preferred Download Source</h2>
+    <p class="help-text">
+      Choose which download source to try first. If the preferred source is
+      unavailable, the system will automatically fall back to other sources.
+    </p>
+    <div class="form-group">
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="preferredSource" value="ipfs"
+            <%= settings.preferredSource === 'ipfs' ? 'checked' : '' %>
+          >
+          <span class="radio-text">
+            <strong>IPFS</strong>
+            <small>InterPlanetary File System &mdash; decentralized, generally reliable</small>
+          </span>
+        </label>
+
+        <label class="radio-label">
+          <input type="radio" name="preferredSource" value="libgenRsFork"
+            <%= settings.preferredSource === 'libgenRsFork' ? 'checked' : '' %>
+          >
+          <span class="radio-text">
+            <strong>LibGen RS Fork</strong>
+            <small>Library Genesis .rs fork mirrors</small>
+          </span>
+        </label>
+
+        <label class="radio-label">
+          <input type="radio" name="preferredSource" value="libgenLiFork"
+            <%= settings.preferredSource === 'libgenLiFork' ? 'checked' : '' %>
+          >
+          <span class="radio-text">
+            <strong>LibGen LI Fork</strong>
+            <small>Library Genesis .li fork mirrors</small>
+          </span>
+        </label>
+
+        <label class="radio-label disabled-option">
+          <input type="radio" name="preferredSource" value="zLibTor" disabled
+            <%= settings.preferredSource === 'zLibTor' ? 'checked' : '' %>
+          >
+          <span class="radio-text">
+            <strong>Z-Library (Tor)</strong>
+            <small>Not yet implemented &mdash; requires Tor integration</small>
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save Settings</button>
+</form>
+
+<%- include('partials/footer') %>

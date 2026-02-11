@@ -2,8 +2,6 @@
 const { DOWNLOAD_PATH } = require('./constants');
 const downloadHelper = require('./helpers/download-helper');
 const searchHelper = require('./helpers/search-helper');
-
-// Libraries
 const axiosHelper = require('./helpers/axios-helper');
 
 /**
@@ -76,43 +74,39 @@ static downloadFileViaLibgen(libgenLinks, fork = undefined, name = undefined, pa
  * @param {String} md5 - MD5 hash of the content
  * @param {String|undefined} name - Optional custom name for the file
  * @param {String} path - Directory path to save the file
- * @param {String} [secretKey] - Optional secret key for API access
  * @param {String} [preferredSource] - Preferred download source ('ipfs', 'libgenRsFork', 'libgenLiFork', 'zLibTor')
  * @return {Promise<String>} Path of the downloaded file
  */
-static async downloadByMd5(md5, name = undefined, path = DOWNLOAD_PATH, secretKey = '', preferredSource = 'ipfs') {
-  return downloadHelper.downloadByMd5(md5, name, path, secretKey, preferredSource);
+static async downloadByMd5(md5, name = undefined, path = DOWNLOAD_PATH, preferredSource = 'ipfs') {
+  return downloadHelper.downloadByMd5(md5, name, path, preferredSource);
 }
 
 /**
  * Gets IPFS links for a given MD5 hash using Fast Download API
  * @param {String} md5 - MD5 hash of the content
- * @param {String} [secretKey] - Optional secret key for API access
  * @return {Promise<Array>} Array of IPFS URLs
  */
-static async getIpfsLinksByMd5(md5, secretKey = '') {
-  return downloadHelper.getIpfsLinksByMd5(md5, secretKey);
+static async getIpfsLinksByMd5(md5) {
+  return downloadHelper.getIpfsLinksByMd5(md5);
 }
 
 /**
  * Gets all download URLs for a given MD5 hash using Fast Download API
  * @param {String} md5 - MD5 hash of the content
- * @param {String} [secretKey] - Optional secret key for API access
  * @return {Promise<Object>} Object with categorized download URLs
  */
-static async getDownloadUrlsByMd5(md5, secretKey = '') {
-  return downloadHelper.getDownloadUrlsByMd5(md5, secretKey);
+static async getDownloadUrlsByMd5(md5) {
+  return downloadHelper.getDownloadUrlsByMd5(md5);
 }
 
 /**
  * Gets all available download sources for a given MD5 hash using Fast Download API
  * @param {String} md5 - MD5 hash of the content
- * @param {String} [secretKey] - Optional secret key for API access
  * @return {Promise<Object>} Object with counts and URLs for each source type
  */
-static async getAllDownloadSources(md5, secretKey = '') {
+static async getAllDownloadSources(md5) {
   const fastDownloadService = require('./services/fast-download-service');
-  return fastDownloadService.getAllDownloadSources(md5, secretKey);
+  return fastDownloadService.getAllDownloadSources(md5);
 }
 }
 

@@ -1,0 +1,480 @@
+/* =========================================================================
+   Archive of Anna -- Web UI Styles
+   ========================================================================= */
+
+/* --- Reset & Base -------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  color: #1a1a2e;
+  background-color: #f5f5fa;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: #4361ee;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  background: #e8e8f0;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* --- Navbar -------------------------------------------------------------- */
+.navbar {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 2rem;
+}
+
+.nav-brand a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-brand a:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* --- Container ----------------------------------------------------------- */
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  flex: 1;
+}
+
+/* --- Headings ------------------------------------------------------------ */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #1a1a2e;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1a1a2e;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Forms --------------------------------------------------------------- */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 140px;
+  flex: 1;
+}
+
+.form-group-wide {
+  flex: 999;
+  min-width: 280px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+input[type='text'],
+select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.15s;
+}
+
+input[type='text']:focus,
+select:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  text-align: center;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: #4361ee;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #3a56d4;
+  color: #fff;
+}
+
+.btn-download {
+  background: #2ec4b6;
+  color: #fff;
+}
+
+.btn-download:hover {
+  background: #28b0a3;
+  color: #fff;
+}
+
+/* --- Alerts -------------------------------------------------------------- */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid;
+}
+
+.alert-error {
+  background: #fff0f0;
+  border-color: #e74c3c;
+  color: #c0392b;
+}
+
+.alert-success {
+  background: #f0fff4;
+  border-color: #27ae60;
+  color: #1e8449;
+}
+
+.alert-info {
+  background: #f0f4ff;
+  border-color: #4361ee;
+  color: #2c3e8c;
+}
+
+/* --- Results Table ------------------------------------------------------- */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.results-table thead {
+  background: #f0f0f8;
+}
+
+.results-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.results-table td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #eee;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.results-table tbody tr:hover {
+  background: #f8f8ff;
+}
+
+.results-table tbody tr:has(input:checked) {
+  background: #eef2ff;
+}
+
+.col-select {
+  width: 50px;
+  text-align: center;
+}
+
+.col-cover {
+  width: 60px;
+}
+
+.col-md5 {
+  width: 180px;
+}
+
+.cover-thumb {
+  width: 45px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.no-cover {
+  display: inline-block;
+  width: 45px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #eee;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  color: #999;
+}
+
+.md5-hash {
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+.col-title label {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* --- Download Bar -------------------------------------------------------- */
+.download-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.download-bar p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0;
+}
+
+/* --- Settings ------------------------------------------------------------ */
+.settings-form {
+  max-width: 700px;
+}
+
+.settings-section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.settings-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.help-text {
+  font-size: 0.88rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.status-card {
+  padding: 0.75rem 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.status-ok {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-warn {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.radio-label:hover {
+  border-color: #4361ee;
+  background: #f8f9ff;
+}
+
+.radio-label input[type='radio'] {
+  margin-top: 0.25rem;
+}
+
+.radio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.radio-text strong {
+  font-size: 0.95rem;
+}
+
+.radio-text small {
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.disabled-option {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled-option:hover {
+  border-color: #e0e0e0;
+  background: transparent;
+}
+
+/* --- Action Links -------------------------------------------------------- */
+.action-links {
+  margin-top: 1.5rem;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  color: #999;
+  font-size: 0.85rem;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+}
+
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .container {
+    padding: 1.25rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    min-width: 100%;
+  }
+
+  .col-md5 {
+    display: none;
+  }
+
+  .download-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .results-table {
+    font-size: 0.88rem;
+  }
+}

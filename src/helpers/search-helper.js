@@ -2,7 +2,7 @@ const {
   BASE_URI,
   PATH_PREFIXES: { MD5 },
 } = require('../constants');
-const cheerio = require('../libraries/cheerio-helper');
+const cheerio = require('../helpers/cheerio-helper');
 const fetchContent = require('../models/fetch-content');
 const searchContent = require('../models/search-content');
 

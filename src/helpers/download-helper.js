@@ -82,13 +82,12 @@ const downloadHelper = {
    * @param {String} md5 - MD5 hash of the content
    * @param {String} name - Optional custom name for the file
    * @param {String} path - Directory path to save the file
-   * @param {String} [secretKey] - Optional secret key for API access
    * @param {String} [preferredSource] - Preferred download source ('ipfs', 'libgenRsFork', 'libgenLiFork')
    * @return {Promise<String>} Path of the downloaded file
    */
-  downloadByMd5: async (md5, name, path, secretKey = '', preferredSource = 'ipfs') => {
+  downloadByMd5: async (md5, name, path, preferredSource = 'ipfs') => {
     try {
-      const downloadSources = await fastDownloadService.getAllDownloadSources(md5, secretKey);
+      const downloadSources = await fastDownloadService.getAllDownloadSources(md5);
       
       if (downloadSources.total === 0) {
         throw new Error(`No download sources found for MD5: ${md5}`);
@@ -117,21 +116,19 @@ const downloadHelper = {
   /**
    * Gets IPFS links for a given MD5 hash
    * @param {String} md5 - MD5 hash of the content
-   * @param {String} [secretKey] - Optional secret key for API access
    * @return {Promise<Array>} Array of IPFS URLs
    */
-  getIpfsLinksByMd5: async (md5, secretKey = '') => {
-    return await fastDownloadService.getIpfsLinks(md5, secretKey);
+  getIpfsLinksByMd5: async (md5) => {
+    return await fastDownloadService.getIpfsLinks(md5);
   },
 
   /**
    * Gets all download URLs for a given MD5 hash
    * @param {String} md5 - MD5 hash of the content
-   * @param {String} [secretKey] - Optional secret key for API access
    * @return {Promise<Object>} Object with categorized download URLs
    */
-  getDownloadUrlsByMd5: async (md5, secretKey = '') => {
-    return await fastDownloadService.getDownloadUrls(md5, secretKey);
+  getDownloadUrlsByMd5: async (md5) => {
+    return await fastDownloadService.getDownloadUrls(md5);
   }
 };
 

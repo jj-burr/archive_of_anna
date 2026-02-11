@@ -2,6 +2,7 @@ const { BASE_URI, FAST_DOWNLOAD_API } = require('../constants');
 const axiosHelper = require('../helpers/axios-helper');
 const fetchContent = require('../models/fetch-content');
 const cheerio = require('../helpers/cheerio-helper');
+const config = require('../config');
 
 /**
  * Service to handle Fast Download API calls and extract download URLs
@@ -10,16 +11,15 @@ const fastDownloadService = {
   /**
    * Gets download URLs using the Fast Download API
    * @param {String} md5 - The MD5 hash of the content
-   * @param {String} [secretKey] - Optional secret key for API access
    * @return {Promise<Object>} Object containing categorized download URLs
    */
-  getDownloadUrls: async (md5, secretKey = '') => {
+  getDownloadUrls: async (md5) => {
     try {
-      // If secret key is provided, use the Fast Download API
-      if (secretKey) {
+      // If secret key is configured, use the Fast Download API
+      if (config.secretKey) {
         const apiUrl = BASE_URI + FAST_DOWNLOAD_API
           .replace('{MD5}', md5)
-          .replace('{SECRET_KEY}', secretKey);
+          .replace('{SECRET_KEY}', config.secretKey);
         
         const response = await axiosHelper.get(apiUrl);
         
@@ -47,12 +47,11 @@ const fastDownloadService = {
   /**
    * Gets IPFS links specifically for a given MD5
    * @param {String} md5 - The MD5 hash of the content
-   * @param {String} [secretKey] - Optional secret key for API access
    * @return {Promise<Array>} Array of IPFS URLs
    */
-  getIpfsLinks: async (md5, secretKey = '') => {
+  getIpfsLinks: async (md5) => {
     try {
-      const downloadUrls = await fastDownloadService.getDownloadUrls(md5, secretKey);
+      const downloadUrls = await fastDownloadService.getDownloadUrls(md5);
       return downloadUrls.ipfs || [];
     } catch (error) {
       throw new Error(`Failed to get IPFS links for MD5 ${md5}: ${error.message}`);
@@ -62,12 +61,11 @@ const fastDownloadService = {
   /**
    * Gets all available download sources for a given MD5
    * @param {String} md5 - The MD5 hash of the content
-   * @param {String} [secretKey] - Optional secret key for API access
    * @return {Promise<Object>} Object with counts and URLs for each source type
    */
-  getAllDownloadSources: async (md5, secretKey = '') => {
+  getAllDownloadSources: async (md5) => {
     try {
-      const downloadUrls = await fastDownloadService.getDownloadUrls(md5, secretKey);
+      const downloadUrls = await fastDownloadService.getDownloadUrls(md5);
       
       return {
         ipfs: {
@@ -81,10 +79,6 @@ const fastDownloadService = {
         libgenLiFork: {
           count: downloadUrls.libgenLiFork?.length || 0,
           urls: downloadUrls.libgenLiFork || []
-        },
-        zLibTor: {
-          count: downloadUrls.zLibTor?.length || 0,
-          urls: downloadUrls.zLibTor || []
         },
         total: (downloadUrls.ipfs?.length || 0) + 
                (downloadUrls.libgenRsFork?.length || 0) + 

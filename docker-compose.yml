@@ -1,0 +1,14 @@
+services:
+  archive-of-anna:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - src/config/.env
+    environment:
+      - DOWNLOAD_PATH=/app/downloads/
+      - PORT=3000
+    volumes:
+      - ./downloads:/app/downloads
+      - ./web/settings.json:/app/web/settings.json
+    restart: unless-stopped

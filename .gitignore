@@ -4,3 +4,4 @@ reports
 node_modules
 *.code-workspace
 /tmp
+web/settings.json

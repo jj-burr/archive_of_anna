@@ -1,0 +1,25 @@
+<%- include('partials/header', { pageTitle: 'Download Status - Archive of Anna', activePage: 'search' }) %>
+
+<h1>Download Status</h1>
+
+<% if (success) { %>
+  <div class="alert alert-success">
+    <h3>Download Complete</h3>
+    <p><strong><%= title %></strong> has been downloaded successfully.</p>
+    <p>Saved to: <code><%= downloadPath %></code></p>
+  </div>
+<% } else { %>
+  <div class="alert alert-error">
+    <h3>Download Failed</h3>
+    <p>Could not download <strong><%= title %></strong>.</p>
+    <% if (error) { %>
+      <p>Error: <%= error %></p>
+    <% } %>
+  </div>
+<% } %>
+
+<div class="action-links">
+  <a href="/search" class="btn btn-primary">Back to Search</a>
+</div>
+
+<%- include('partials/footer') %>

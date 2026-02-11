@@ -1,0 +1,175 @@
+<%- include('partials/header', { pageTitle: 'Search - Archive of Anna', activePage: 'search' }) %>
+
+<h1>Search Anna's Archive</h1>
+
+<form method="POST" action="/search" class="search-form">
+  <div class="form-row">
+    <div class="form-group form-group-wide">
+      <label for="query">Search</label>
+      <input
+        type="text"
+        id="query"
+        name="query"
+        value="<%= query %>"
+        placeholder="Enter book title, author, or ISBN..."
+        required
+        autofocus
+      >
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="lang">Language</label>
+      <select id="lang" name="lang">
+        <option value="" <%= lang === '' ? 'selected' : '' %>>Any</option>
+        <option value="en" <%= lang === 'en' ? 'selected' : '' %>>English</option>
+        <option value="es" <%= lang === 'es' ? 'selected' : '' %>>Spanish</option>
+        <option value="fr" <%= lang === 'fr' ? 'selected' : '' %>>French</option>
+        <option value="de" <%= lang === 'de' ? 'selected' : '' %>>German</option>
+        <option value="it" <%= lang === 'it' ? 'selected' : '' %>>Italian</option>
+        <option value="pt" <%= lang === 'pt' ? 'selected' : '' %>>Portuguese</option>
+        <option value="ru" <%= lang === 'ru' ? 'selected' : '' %>>Russian</option>
+        <option value="zh" <%= lang === 'zh' ? 'selected' : '' %>>Chinese</option>
+        <option value="ja" <%= lang === 'ja' ? 'selected' : '' %>>Japanese</option>
+        <option value="ar" <%= lang === 'ar' ? 'selected' : '' %>>Arabic</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content Type</label>
+      <select id="content" name="content">
+        <option value="" <%= content === '' ? 'selected' : '' %>>Any</option>
+        <option value="book_nonfiction" <%= content === 'book_nonfiction' ? 'selected' : '' %>>Non-Fiction</option>
+        <option value="book_fiction" <%= content === 'book_fiction' ? 'selected' : '' %>>Fiction</option>
+        <option value="book_unknown" <%= content === 'book_unknown' ? 'selected' : '' %>>Unknown</option>
+        <option value="magazine" <%= content === 'magazine' ? 'selected' : '' %>>Magazine</option>
+        <option value="comic" <%= content === 'comic' ? 'selected' : '' %>>Comic</option>
+        <option value="standards_document" <%= content === 'standards_document' ? 'selected' : '' %>>Standards Document</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ext">File Type</label>
+      <select id="ext" name="ext">
+        <option value="" <%= ext === '' ? 'selected' : '' %>>Any</option>
+        <option value="pdf" <%= ext === 'pdf' ? 'selected' : '' %>>PDF</option>
+        <option value="epub" <%= ext === 'epub' ? 'selected' : '' %>>EPUB</option>
+        <option value="mobi" <%= ext === 'mobi' ? 'selected' : '' %>>MOBI</option>
+        <option value="djvu" <%= ext === 'djvu' ? 'selected' : '' %>>DJVU</option>
+        <option value="azw3" <%= ext === 'azw3' ? 'selected' : '' %>>AZW3</option>
+        <option value="fb2" <%= ext === 'fb2' ? 'selected' : '' %>>FB2</option>
+        <option value="cbr" <%= ext === 'cbr' ? 'selected' : '' %>>CBR</option>
+        <option value="cbz" <%= ext === 'cbz' ? 'selected' : '' %>>CBZ</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sort">Sort By</label>
+      <select id="sort" name="sort">
+        <option value="" <%= sort === '' ? 'selected' : '' %>>Most Relevant</option>
+        <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>Newest</option>
+        <option value="oldest" <%= sort === 'oldest' ? 'selected' : '' %>>Oldest</option>
+        <option value="largest" <%= sort === 'largest' ? 'selected' : '' %>>Largest</option>
+        <option value="smallest" <%= sort === 'smallest' ? 'selected' : '' %>>Smallest</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<% if (error) { %>
+  <div class="alert alert-error">
+    <%= error %>
+  </div>
+<% } %>
+
+<% if (results && results.length > 0) { %>
+  <h2>Results (<%= results.length %> found)</h2>
+
+  <form method="POST" action="/download" id="download-form">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th class="col-select">Select</th>
+          <th class="col-cover">Cover</th>
+          <th class="col-title">Title</th>
+          <th class="col-authors">Authors</th>
+          <th class="col-md5">MD5</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((item, index) => { %>
+          <tr>
+            <td class="col-select">
+              <input
+                type="radio"
+                name="md5"
+                value="<%= item.md5 %>"
+                id="result-<%= index %>"
+                <%= index === 0 ? 'checked' : '' %>
+              >
+            </td>
+            <td class="col-cover">
+              <% if (item.coverUrl) { %>
+                <img
+                  src="<%= item.coverUrl %>"
+                  alt="Cover"
+                  class="cover-thumb"
+                  onerror="this.style.display='none'"
+                >
+              <% } else { %>
+                <span class="no-cover">No cover</span>
+              <% } %>
+            </td>
+            <td class="col-title">
+              <label for="result-<%= index %>"><%= item.title || 'Untitled' %></label>
+            </td>
+            <td class="col-authors"><%= item.authors || 'Unknown' %></td>
+            <td class="col-md5">
+              <code class="md5-hash"><%= item.md5 %></code>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <!-- Hidden field to pass the title for display on status page -->
+    <input type="hidden" name="title" id="selected-title" value="">
+
+    <div class="download-bar">
+      <p>Download path: <code><%= settings.downloadPath %></code> | Source: <code><%= settings.preferredSource %></code>
+        &mdash; <a href="/settings">change</a>
+      </p>
+      <button type="submit" class="btn btn-download">Download Selected</button>
+    </div>
+  </form>
+
+  <script>
+    // Update hidden title field when a radio button is selected
+    document.querySelectorAll('input[name="md5"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        var row = this.closest('tr');
+        var title = row.querySelector('.col-title label').textContent;
+        document.getElementById('selected-title').value = title;
+      });
+    });
+    // Set initial title
+    (function() {
+      var checked = document.querySelector('input[name="md5"]:checked');
+      if (checked) {
+        var row = checked.closest('tr');
+        var title = row.querySelector('.col-title label').textContent;
+        document.getElementById('selected-title').value = title;
+      }
+    })();
+  </script>
+
+<% } else if (results && results.length === 0) { %>
+  <div class="alert alert-info">
+    No results found for "<%= query %>". Try a different search term.
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>
