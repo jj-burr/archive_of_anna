@@ -1,14 +1,55 @@
-node_modules
+# Version control
 .git
+.gitignore
+
+# Dependencies
+node_modules
+
+# Testing and coverage
 .nyc_output
 coverage
 reports
+test
+
+# Build artifacts
+dist
+build
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment and config
+.env
+.env.local
+.env.*.local
+
+# Development files
 tmp
 .claude
-nul
-web/settings.json
+
+# Logs (loaded from volume)
+logs
+
+# Documentation
 *.md
+README.md
+LICENSE.txt
+CODE_OF_CONDUCT.md
+CLAUDE.md
+
+# Linting and formatting
 .eslintrc.json
 .prettierrc.json
 .jshintrc
-.env
+
+# Settings (loaded from volume)
+web/settings.json
+
+# Windows
+nul
+Thumbs.db

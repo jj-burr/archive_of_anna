@@ -1,0 +1,18 @@
+[
+  {
+    "query": "machine learning",
+    "lang": "en",
+    "content": "",
+    "ext": "pdf",
+    "sort": "",
+    "timestamp": 1707000000000
+  },
+  {
+    "query": "javascript patterns",
+    "lang": "",
+    "content": "book_nonfiction",
+    "ext": "",
+    "sort": "newest",
+    "timestamp": 1706999000000
+  }
+]

@@ -3,6 +3,7 @@
 const path = require('path');
 const express = require('express');
 const fs = require('fs');
+const logger = require('./logger');
 
 // Load .env from src/config/.env before importing the library
 require('dotenv').config({
@@ -33,10 +34,10 @@ const loadSettings = () => {
   try {
     if (fs.existsSync(SETTINGS_FILE)) {
       const raw = fs.readFileSync(SETTINGS_FILE, 'utf-8');
-      return {...DEFAULT_SETTINGS, ...JSON.parse(raw)};
+      return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
     }
-  } catch (_) { /* fall through */ }
-  return {...DEFAULT_SETTINGS};
+  } catch (_) {/* fall through */}
+  return { ...DEFAULT_SETTINGS };
 };
 
 /**
@@ -48,7 +49,15 @@ const saveSettings = (settings) => {
 };
 
 // In-memory settings (loaded once at start, updated on POST /settings)
-let settings = loadSettings();
+const settings = loadSettings();
+
+// ---------------------------------------------------------------------------
+// Recent searches persistence
+// ---------------------------------------------------------------------------
+const { createRecentSearchesManager } = require('./recent-searches');
+const RECENT_SEARCHES_FILE = path.join(__dirname, 'recent-searches.json');
+const recentSearchesMgr = createRecentSearchesManager(RECENT_SEARCHES_FILE);
+let recentSearches = recentSearchesMgr.load();
 
 // ---------------------------------------------------------------------------
 // Express configuration
@@ -56,9 +65,23 @@ let settings = loadSettings();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Access logging middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    logger.access('HTTP request', {
+      method: req.method,
+      url: req.originalUrl,
+      status: res.statusCode,
+      duration: Date.now() - start,
+    });
+  });
+  next();
+});
 
 // Make settings + helpers available to all templates
 app.use((req, res, next) => {
@@ -77,7 +100,34 @@ app.get('/', (req, res) => res.redirect('/search'));
 // ---------------------------------------------------------------------------
 // Search
 // ---------------------------------------------------------------------------
-app.get('/search', (req, res) => {
+app.get('/search', async (req, res) => {
+  const { query, lang, content, ext, sort } = req.query;
+
+  // If query params present (from recent search chip), run the search
+  if (query && query.trim()) {
+    try {
+      const results = await ArchiveOfAnna.search(
+        query.trim(), lang || '', content || '', ext || '', sort || '',
+      );
+      logger.info('Search executed', { query: query.trim(), resultCount: results ? results.length : 0 });
+      return res.render('search', {
+        results,
+        query: query.trim(),
+        lang: lang || '', content: content || '', ext: ext || '', sort: sort || '',
+        recentSearches,
+        error: null,
+      });
+    } catch (err) {
+      return res.render('search', {
+        results: null,
+        query: query.trim(),
+        lang: lang || '', content: content || '', ext: ext || '', sort: sort || '',
+        recentSearches,
+        error: `Search failed: ${err.message}`,
+      });
+    }
+  }
+
   res.render('search', {
     results: null,
     query: '',
@@ -85,12 +135,13 @@ app.get('/search', (req, res) => {
     content: '',
     ext: '',
     sort: '',
+    recentSearches,
     error: null,
   });
 });
 
 app.post('/search', async (req, res) => {
-  const {query, lang, content, ext, sort} = req.body;
+  const { query, lang, content, ext, sort } = req.body;
 
   if (!query || !query.trim()) {
     return res.render('search', {
@@ -100,6 +151,7 @@ app.post('/search', async (req, res) => {
       content: '',
       ext: '',
       sort: '',
+      recentSearches,
       error: 'Please enter a search term.',
     });
   }
@@ -113,6 +165,16 @@ app.post('/search', async (req, res) => {
       sort || '',
     );
 
+    // Track recent search
+    recentSearches = recentSearchesMgr.add({
+      query: query.trim(),
+      lang: lang || '',
+      content: content || '',
+      ext: ext || '',
+      sort: sort || '',
+    });
+    logger.info('Search executed', { query: query.trim(), resultCount: results ? results.length : 0 });
+
     res.render('search', {
       results,
       query: query.trim(),
@@ -120,9 +182,11 @@ app.post('/search', async (req, res) => {
       content: content || '',
       ext: ext || '',
       sort: sort || '',
+      recentSearches,
       error: null,
     });
   } catch (err) {
+    logger.error('Search failed', { query: query.trim(), error: err.message });
     res.render('search', {
       results: null,
       query: query.trim(),
@@ -130,6 +194,7 @@ app.post('/search', async (req, res) => {
       content: content || '',
       ext: ext || '',
       sort: sort || '',
+      recentSearches,
       error: `Search failed: ${err.message}`,
     });
   }
@@ -139,7 +204,7 @@ app.post('/search', async (req, res) => {
 // Download
 // ---------------------------------------------------------------------------
 app.post('/download', async (req, res) => {
-  const {md5, title} = req.body;
+  const { md5, title } = req.body;
 
   if (!md5) {
     return res.redirect('/search');
@@ -180,6 +245,66 @@ app.get('/download/status', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// Downloads
+// ---------------------------------------------------------------------------
+const { formatFileSize } = require('./format-utils');
+
+app.get('/downloads', (req, res) => {
+  const downloadPath = path.resolve(settings.downloadPath);
+  let files = [];
+
+  try {
+    if (fs.existsSync(downloadPath)) {
+      const entries = fs.readdirSync(downloadPath);
+      files = entries.map((name) => {
+        try {
+          const stat = fs.statSync(path.join(downloadPath, name));
+          if (!stat.isFile()) return null;
+          return {
+            name,
+            size: formatFileSize(stat.size),
+            modified: stat.mtime.toISOString().split('T')[0],
+          };
+        } catch (_) {
+          return null;
+        }
+      }).filter(Boolean);
+    }
+  } catch (err) {
+    logger.error('Failed to read downloads directory', { path: downloadPath, error: err.message });
+  }
+
+  res.render('downloads', {
+    files,
+    downloadPath,
+    activePage: 'downloads',
+  });
+});
+
+app.get('/downloads/file/:filename', (req, res) => {
+  const filename = req.params.filename;
+
+  // Path traversal protection
+  if (filename.includes('..') || path.isAbsolute(filename)) {
+    return res.status(400).send('Invalid filename.');
+  }
+
+  const downloadPath = path.resolve(settings.downloadPath);
+  const filePath = path.join(downloadPath, filename);
+
+  // Verify the resolved path is still within the download directory
+  if (!filePath.startsWith(downloadPath)) {
+    return res.status(400).send('Invalid filename.');
+  }
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send('File not found.');
+  }
+
+  res.download(filePath);
+});
+
+// ---------------------------------------------------------------------------
 // Settings
 // ---------------------------------------------------------------------------
 app.get('/settings', (req, res) => {
@@ -190,7 +315,7 @@ app.get('/settings', (req, res) => {
 });
 
 app.post('/settings', (req, res) => {
-  const {downloadPath, preferredSource} = req.body;
+  const { downloadPath, preferredSource } = req.body;
 
   try {
     if (downloadPath && downloadPath.trim()) {
@@ -218,7 +343,9 @@ app.post('/settings', (req, res) => {
 // Start server
 // ---------------------------------------------------------------------------
 app.listen(PORT, () => {
-  console.log(`Archive of Anna web service running at http://localhost:${PORT}`);
-  console.log(`SECRET_KEY configured: ${!!process.env.SECRET_KEY}`);
-  console.log(`Download path: ${path.resolve(settings.downloadPath)}`);
+  logger.info('Server started', {
+    url: `http://localhost:${PORT}`,
+    secretKeyConfigured: !!process.env.SECRET_KEY,
+    downloadPath: path.resolve(settings.downloadPath),
+  });
 });

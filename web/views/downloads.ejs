@@ -1,0 +1,36 @@
+<%- include('partials/header', { pageTitle: 'Downloads - Archive of Anna', activePage: 'downloads' }) %>
+
+<h1>Downloads</h1>
+
+<p class="help-text">Download path: <code><%= downloadPath %></code> &mdash; <a href="/settings">change</a></p>
+
+<% if (files.length > 0) { %>
+  <table class="results-table downloads-table">
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Size</th>
+        <th>Date Modified</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% files.forEach((file) => { %>
+        <tr>
+          <td><code><%= file.name %></code></td>
+          <td><%= file.size %></td>
+          <td><%= file.modified %></td>
+          <td>
+            <a href="/downloads/file/<%= encodeURIComponent(file.name) %>" class="btn btn-small">Download</a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } else { %>
+  <div class="alert alert-info">
+    No files downloaded yet. <a href="/search">Search</a> for something to download.
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

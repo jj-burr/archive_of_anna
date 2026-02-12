@@ -432,9 +432,80 @@ select:focus {
   background: transparent;
 }
 
+/* --- Recent Searches ----------------------------------------------------- */
+.recent-searches {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.recent-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.recent-chip {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  background: #eef2ff;
+  color: #4361ee;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-chip:hover {
+  background: #dde4ff;
+  text-decoration: none;
+}
+
+.recent-chip small {
+  color: #7788cc;
+  font-size: 0.78rem;
+}
+
+/* --- Downloads Page ------------------------------------------------------- */
+.downloads-table td:last-child {
+  width: 100px;
+  text-align: center;
+}
+
+.btn-small {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #4361ee;
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.btn-small:hover {
+  background: #3a56d4;
+  text-decoration: none;
+  color: #fff;
+}
+
 /* --- Action Links -------------------------------------------------------- */
 .action-links {
   margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 /* --- Footer -------------------------------------------------------------- */

@@ -1,0 +1,21 @@
+{"key":"myfile","level":"debug","message":"Download progress","progress":50,"timestamp":"2026-02-12 00:13:44"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:13:44"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:13:44"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:13:44"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:13:44","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:13:44","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:13:44","type":"access","url":"/test"}
+{"key":"myfile","level":"debug","message":"Download progress","progress":50,"timestamp":"2026-02-12 00:14:36"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:14:36"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:14:36"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:14:36"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:14:36","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:14:36","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:14:36","type":"access","url":"/test"}
+{"key":"myfile","level":"debug","message":"Download progress","progress":50,"timestamp":"2026-02-12 00:17:56"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:17:56"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:17:56"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 00:17:56"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:17:56","type":"access","url":"/test"}

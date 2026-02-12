@@ -20,6 +20,9 @@
 
 <div class="action-links">
   <a href="/search" class="btn btn-primary">Back to Search</a>
+  <% if (success) { %>
+    <a href="/downloads" class="btn btn-download">View in Downloads</a>
+  <% } %>
 </div>
 
 <%- include('partials/footer') %>

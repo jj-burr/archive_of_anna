@@ -79,6 +79,18 @@
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
+<% if (recentSearches && recentSearches.length > 0) { %>
+  <div class="recent-searches">
+    <span class="recent-label">Recent:</span>
+    <% recentSearches.forEach((s) => { %>
+      <a href="/search?query=<%= encodeURIComponent(s.query) %>&lang=<%= encodeURIComponent(s.lang) %>&content=<%= encodeURIComponent(s.content) %>&ext=<%= encodeURIComponent(s.ext) %>&sort=<%= encodeURIComponent(s.sort) %>"
+         class="recent-chip"
+         title="<%= s.query %><%= s.ext ? ' (' + s.ext.toUpperCase() + ')' : '' %>"
+      ><%= s.query %><% if (s.ext) { %> <small>.<%= s.ext %></small><% } %></a>
+    <% }); %>
+  </div>
+<% } %>
+
 <% if (error) { %>
   <div class="alert alert-error">
     <%= error %>

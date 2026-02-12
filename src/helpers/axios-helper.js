@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { getProgress, setProgress } = require('../interface/download-progress');
+const logger = require('../../web/logger');
 
 const headers = { 'User-Agent': 'PostmanRuntime/7.30.0' };
 
@@ -13,7 +14,7 @@ const axiosHelper = {
       responseType: 'stream',
       onDownloadProgress: (progressEvent) => {
         setProgress(downloadProgressKey, progressEvent);
-        console.log('Current Progress: ' + getProgress(downloadProgressKey) + '%'); // TODO: Remove this console log after setting up hooks.
+        logger.debug('Download progress', { key: downloadProgressKey, progress: getProgress(downloadProgressKey) });
       },
     });
   },

@@ -1,0 +1,9 @@
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:13:44","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:13:44","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:13:44","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:14:36","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:14:36","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:14:36","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/downloads"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:17:56","type":"access","url":"/test"}

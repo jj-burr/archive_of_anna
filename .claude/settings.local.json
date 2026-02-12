@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git -C \"C:\\\\Users\\\\jimmy\\\\Documents\\\\git-repos\\\\archive_of_anna\" diff HEAD .dockerignore Dockerfile README.md docker-compose.yml)",
+      "Bash(npm run test:*)",
+      "Bash(npx eslint:*)"
     ]
   }
 }

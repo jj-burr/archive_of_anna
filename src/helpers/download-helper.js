@@ -1,6 +1,7 @@
 const axiosHelper = require('./axios-helper');
 const fileHelper = require('./file-helper');
 const fastDownloadService = require('../services/fast-download-service');
+const logger = require('../../web/logger');
 
 const getSubstringIndicesForFilename = (contentDispositionHeader) => {
   const filenameHeader = 'filename="';
@@ -88,21 +89,21 @@ const downloadHelper = {
   downloadByMd5: async (md5, name, path, preferredSource = 'ipfs') => {
     try {
       const downloadSources = await fastDownloadService.getAllDownloadSources(md5);
-      
+
       if (downloadSources.total === 0) {
         throw new Error(`No download sources found for MD5: ${md5}`);
       }
 
       // Try preferred source first, then fallback to others in order
       const sources = [preferredSource, 'ipfs', 'libgenRsFork', 'libgenLiFork', 'zLibTor'];
-      
+
       for (const source of sources) {
         const sourceData = downloadSources[source];
         if (sourceData && sourceData.count > 0) {
           try {
             return await downloadFileFromGivenLinks(sourceData.urls, name, path);
           } catch (error) {
-            console.warn(`Failed to download from ${source}, trying next source: ${error.message}`);
+            logger.warn(`Failed to download from ${source}, trying next source`, { source, error: error.message });
           }
         }
       }
@@ -129,7 +130,7 @@ const downloadHelper = {
    */
   getDownloadUrlsByMd5: async (md5) => {
     return await fastDownloadService.getDownloadUrls(md5);
-  }
+  },
 };
 
 module.exports = downloadHelper;
