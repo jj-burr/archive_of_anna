@@ -62,6 +62,25 @@ DOWNLOAD_PATH=./downloads/                  # optional, defaults to ./tmp/
 The Fast Download API (`/dyn/api/fast_download.json`) requires a valid `SECRET_KEY`. Without one, downloads fall back to scraping the MD5 page.
 
 ## Usage
+Working:
+1. Search page and filter (no coverpage)
+
+TODO:
+Search Page
+1. Fix download action on search page to fetch selected option
+2. Add queue button option
+3. Create RSS Feed for queue?
+4. Remove filters, set static options to enforce preferred filters(eng, epub/pdf). Manage sources in settings
+
+Download Page
+1. Add multi download option (like a download manager?)
+2. Add queue view or rss feed page view
+3. Testing/validation needed
+
+Setting Page
+1. Testing/validation needed
+2. Update sources to reflect archive's listed source
+3. Define sources in settings instead of Search page
 
 ### As a library
 
