@@ -62,10 +62,11 @@ DOWNLOAD_PATH=./downloads/                  # optional, defaults to ./tmp/
 The Fast Download API (`/dyn/api/fast_download.json`) requires a valid `SECRET_KEY`. Without one, downloads fall back to scraping the MD5 page.
 
 ## Usage
-Working:
-1. Search page and filter (no coverpage)
+LIMITED USAGE
+1. Search page returns title, author, and md5
 
-TODO:
+
+## TODO List
 Search Page
 1. Fix download action on search page to fetch selected option
 2. Add queue button option
