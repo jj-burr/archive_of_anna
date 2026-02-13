@@ -106,7 +106,7 @@ app.get('/search', async (req, res) => {
   // If query params present (from recent search chip), run the search
   if (query && query.trim()) {
     try {
-      const results = await ArchiveOfAnna.search(
+      const results = await ArchiveOfAnna.searchBooks(
         query.trim(), lang || '', content || '', ext || '', sort || '',
       );
       logger.info('Search executed', { query: query.trim(), resultCount: results ? results.length : 0 });
@@ -157,7 +157,7 @@ app.post('/search', async (req, res) => {
   }
 
   try {
-    const results = await ArchiveOfAnna.search(
+    const results = await ArchiveOfAnna.searchBooks(
       query.trim(),
       lang || '',
       content || '',

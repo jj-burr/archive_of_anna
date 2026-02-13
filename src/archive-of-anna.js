@@ -25,7 +25,7 @@ class ArchiveOfAnna {
    * @return {Object[]} - The collection of items returned based on your search.
    * TODO: Fix documentation.
    */
-  static async search(text, lang = '', content = '', ext = '', sort = '') {
+  static async searchBooks(text, lang = '', content = '', ext = '', sort = '') {
     const url = searchHelper.buildSearchUrl(text, lang, content, ext, sort);
     const response = await axiosHelper.get(url);
     return searchHelper.collectContents(response.data);

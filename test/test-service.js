@@ -10,7 +10,8 @@ try {
   const requiredMethods = [
     'getDownloadUrls',
     'getIpfsLinks', 
-    'getAllDownloadSources'
+    'getAllDownloadSources',
+    'searchBooks'
   ];
 
   let availableMethods = 0;
