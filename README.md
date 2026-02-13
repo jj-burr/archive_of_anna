@@ -1,6 +1,6 @@
-# Archive Of Anna (previously Zlibrary)
+# Archive Of Anna
 
-Unofficial JavaScript client library and web interface for [Anna's Archive](https://annas-archive.li). Provides programmatic search, metadata fetching, and file downloads from shadow library sources. Can be used as an imported npm module **or** run as a standalone web application.
+Forked JavaScript client library with a new local web interface for [Anna's Archive](https://annas-archive.li). Provides programmatic search, metadata fetching, and file downloads from shadow library sources. Can be deployed via docker for local hosting(TODO: create image/release). Intended project for learning and development.
 
 ## Features
 
@@ -11,11 +11,43 @@ Unofficial JavaScript client library and web interface for [Anna's Archive](http
 - **Docker support** for containerized deployment
 
 ## Installation
+Requires a local build (no image/release available to pull from atm)
+1. `docker buildx build -t image-name:localanna1 .`
+2. create docker-compose.yml
+3. cd ~/applocation/archive-of-anna/ && docker compose up -d
+4. visit localhost:3000
 
-```bash
-git clone https://github.com/shettytejas/archive_of_anna.git
-cd archive_of_anna
-npm install
+Docker-compose.yml
+```
+services:
+  archive-of-anna:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: archive-of-anna
+    ports:
+      - "3000:3000"
+    env_file: src/config/.env
+    environment:
+      - DOWNLOAD_PATH=/app/downloads/
+      - PORT=3000 
+    volumes:
+      - ./downloads:/app/downloads
+      - ./logs:/app/logs
+      - ./web/settings.json:/app/web/settings.json
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/search', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 ```
 
 ### Environment
