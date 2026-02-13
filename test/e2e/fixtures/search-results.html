@@ -1,4 +1,5 @@
-<%- include('partials/header', { pageTitle: 'Search - Archive of Anna', activePage: 'search' }) %>
+<!DOCTYPE html>
+<html lang="en">
 
 <h1>Search Anna's Archive</h1>
 
@@ -79,109 +80,71 @@
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
-<% if (recentSearches && recentSearches.length > 0) { %>
-  <div class="recent-searches">
-    <span class="recent-label">Recent:</span>
-    <% recentSearches.forEach((s) => { %>
-      <a href="/search?query=<%= encodeURIComponent(s.query) %>&lang=<%= encodeURIComponent(s.lang) %>&content=<%= encodeURIComponent(s.content) %>&ext=<%= encodeURIComponent(s.ext) %>&sort=<%= encodeURIComponent(s.sort) %>"
-         class="recent-chip"
-         title="<%= s.query %><%= s.ext ? ' (' + s.ext.toUpperCase() + ')' : '' %>"
-      ><%= s.query %><% if (s.ext) { %> <small>.<%= s.ext %></small><% } %></a>
-    <% }); %>
+<h2>Results (2 found)</h2>
+
+<form method="POST" action="/download" id="download-form">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th class="col-select">Select</th>
+        <th class="col-cover">Cover</th>
+        <th class="col-title">Title</th>
+        <th class="col-authors">Author</th>
+        <th class="col-md5">MD5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-select">
+          <input type="radio" name="md5" value="abc123def456" id="result-0" checked>
+        </td>
+        <td class="col-cover">
+          <img
+            src="https://s3proxy.cdn-zlib.sk//covers299/collections/userbooks/e978e081b8282dcabf8a88d8c60f8c1b19df61f521d9b8d6893ccee5effd2325.jpghttps://s3proxy.cdn-zlib.someimg.webp"
+            alt="Cover"
+            class="cover-thumb"
+            onerror="this.style.display='none'"
+          >
+        </td>
+        <td class="col-title">
+          <label for="result-0">Red Rising</label>
+        </td>
+        <td class="col-authors">Pierce Brown</td>
+        <td class="col-md5">
+          <code class="md5-hash">abc123def456</code>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-select">
+          <input type="radio" name="md5" value="789ghi012jkl" id="result-1">
+        </td>
+        <td class="col-cover">
+          <span class="no-cover">No cover</span>
+        </td>
+        <td class="col-title">
+          <label for="result-1">Golden Son</label>
+        </td>
+        <td class="col-authors">Pierce Brown</td>
+        <td class="col-md5">
+          <code class="md5-hash">789ghi012jkl</code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <input type="hidden" name="title" id="selected-title" value="">
+
+  <div class="download-bar">
+    <p>Download path: <code>./downloads/</code> | Source: <code>ipfs</code>
+      &mdash; <a href="/settings">change</a>
+    </p>
+    <button type="submit" class="btn btn-download">Download Selected</button>
   </div>
-<% } %>
+</form>
 
-<% if (error) { %>
-  <div class="alert alert-error">
-    <%= error %>
-  </div>
-<% } %>
-
-<% if (results && results.length > 0) { %>
-  <h2>Results (<%= results.length %> found)</h2>
-
-  <form method="POST" action="/download" id="download-form">
-    <table class="results-table">
-      <thead>
-        <tr>
-          <th class="col-select">Select</th>
-          <th class="col-cover">Cover</th>
-          <th class="col-title">Title</th>
-          <th class="col-authors">Author</th>
-          <th class="col-md5">MD5</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% results.forEach((item, index) => { %>
-          <tr>
-            <td class="col-select">
-              <input
-                type="radio"
-                name="md5"
-                value="<%= item.md5 %>"
-                id="result-<%= index %>"
-                <%= index === 0 ? 'checked' : '' %>
-              >
-            </td>
-            <td class="col-cover">
-              <% if (item.coverUrl) { %>
-                <img
-                  src="<%= item.coverUrl %>"
-                  alt="Cover"
-                  class="cover-thumb"
-                  onerror="this.style.display='none'"
-                >
-              <% } else { %>
-                <span class="no-cover">No cover</span>
-              <% } %>
-            </td>
-            <td class="col-title">
-              <label for="result-<%= index %>"><%= item.title || 'Untitled' %></label>
-            </td>
-            <td class="col-authors"><%= item.author || 'Unknown' %></td>
-            <td class="col-md5">
-              <code class="md5-hash"><%= item.md5 %></code>
-            </td>
-          </tr>
-        <% }); %>
-      </tbody>
-    </table>
-
-    <!-- Hidden field to pass the title for display on status page -->
-    <input type="hidden" name="title" id="selected-title" value="">
-
-    <div class="download-bar">
-      <p>Download path: <code><%= settings.downloadPath %></code> | Source: <code><%= settings.preferredSource %></code>
-        &mdash; <a href="/settings">change</a>
-      </p>
-      <button type="submit" class="btn btn-download">Download Selected</button>
-    </div>
-  </form>
-
-  <script>
-    // Update hidden title field when a radio button is selected
-    document.querySelectorAll('input[name="md5"]').forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        var row = this.closest('tr');
-        var title = row.querySelector('.col-title label').textContent;
-        document.getElementById('selected-title').value = title;
-      });
-    });
-    // Set initial title
-    (function() {
-      var checked = document.querySelector('input[name="md5"]:checked');
-      if (checked) {
-        var row = checked.closest('tr');
-        var title = row.querySelector('.col-title label').textContent;
-        document.getElementById('selected-title').value = title;
-      }
-    })();
-  </script>
-
-<% } else if (results && results.length === 0) { %>
-  <div class="alert alert-info">
-    No results found for "<%= query %>". Try a different search term.
-  </div>
-<% } %>
-
-<%- include('partials/footer') %>
+  </main>
+  <footer class="footer">
+    <p>Archive of Anna &mdash; Unofficial client for Anna's Archive</p>
+  </footer>
+</body>
+</html>

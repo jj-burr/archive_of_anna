@@ -18,8 +18,11 @@
   ],
   "scripts": {
     "start": "node web/server.js",
-    "test": "nyc --reporter=html --check-coverage --lines 90 --per-file mocha test/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml",
-    "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
+    "test": "nyc --reporter=html --check-coverage --lines 90 --per-file mocha \"test/unit/**/*.js\" test/verify-integration.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml",
+    "test:e2e": "npx playwright test",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:all": "npm test && npm run test:e2e",
+    "lint": "eslint '**/*.js'"
   },
   "author": "Tejas Shetty",
   "license": "MIT",
@@ -32,6 +35,7 @@
     "winston": "^3.19.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "chai": "^4.3.6",
     "eslint": "^8.57.1",
     "eslint-config-google": "^0.14.0",

@@ -1,133 +1,112 @@
-# Fast-Download-Service Integration Tests
+# Tests
 
-This directory contains comprehensive tests to verify that the fast-download-service is properly integrated with the ArchiveOfAnna class.
-
-## Test Files
-
-### 1. `test-service.js`
-Tests the fast-download-service independently:
-- Module loading
-- Method availability (`getDownloadUrls`, `getIpfsLinks`, `getAllDownloadSources`)
-- Dependencies (constants, axios-helper, fetch-content, cheerio-helper)
-
-**Run with:** `node src/test/test-service.js`
-
-### 2. `test-download-helper.js`
-Tests the download-helper integration:
-- Module loading
-- Fast download methods (`downloadByMd5`, `getIpfsLinksByMd5`, `getDownloadUrlsByMd5`)
-- Dependencies (axios-helper, file-helper, fast-download-service)
-- Parameter validation
-
-**Run with:** `node src/test/test-download-helper.js`
-
-### 3. `test-integration.js`
-Tests the full ArchiveOfAnna class integration:
-- Method discovery and listing
-- Method signature validation
-- Service integration verification
-- Constants loading verification
-- Complete API availability
-
-**Run with:** `node src/test/test-integration.js`
-
-### 4. `run-all-tests.js`
-Test runner that executes all tests in sequence:
-- Runs all individual tests
-- Provides comprehensive summary
-- Reports overall pass/fail status
-
-**Run with:** `node src/test/run-all-tests.js`
-
-## What the Tests Verify
-
-### Integration Points
-1. **Module Loading**: All required modules can be imported without errors
-2. **Method Availability**: All fast-download methods are accessible
-3. **Dependency Chain**: All dependencies are properly linked
-4. **Parameter Validation**: Methods accept correct number of parameters
-
-### API Methods Tested
-- `ArchiveOfAnna.downloadByMd5(md5, name, path, secretKey, preferredSource)`
-- `ArchiveOfAnna.getIpfsLinksByMd5(md5, secretKey)`
-- `ArchiveOfAnna.getDownloadUrlsByMd5(md5, secretKey)`
-- `ArchiveOfAnna.getAllDownloadSources(md5, secretKey)`
-
-### Service Components Tested
-- `fast-download-service.js` - Core service
-- `download-helper.js` - Integration layer
-- `constants.js` - Configuration constants
-- `archive-of-anna.js` - Main API class
-
-## Expected Output
-
-When all tests pass, you should see:
-
-```
-ALL TESTS PASSED!
-Fast-download-service integration is fully functional!
-
-Ready for use with these methods:
-   - ArchiveOfAnna.downloadByMd5()
-   - ArchiveOfAnna.getIpfsLinksByMd5()
-   - ArchiveOfAnna.getDownloadUrlsByMd5()
-   - ArchiveOfAnna.getAllDownloadSources()
-```
-
-## Troubleshooting
-
-### Import Path Errors
-If you see import errors, verify:
-- `axios-helper.js` is in `src/helpers/`
-- `file-helper.js` is in `src/helpers/`
-- All relative paths are correct
-
-### Missing Constants
-If constants are missing, check:
-- `FAST_DOWNLOAD_API` is defined in `constants.js`
-- `BASE_URI` is correctly set
-
-### Method Not Found
-If methods are missing:
-- Verify fast-download-service.js is properly exported
-- Check ArchiveOfAnna class includes new methods
-- Ensure no syntax errors in the files
+This project uses **Mocha** + **Chai** + **Sinon** for unit tests, with **NYC** enforcing 90% line coverage per file. Legacy integration scripts are also included for manual fast-download-service verification.
 
 ## Running Tests
 
-### Prerequisites
-- Node.js installed
-- Project dependencies installed: `npm install`
+### Unit tests (primary)
 
-### Individual Tests
 ```bash
-# Run specific test
-node src/test/test-service.js
-node src/test/test-download-helper.js  
-node src/test/test-integration.js
-
-# Run all tests
-node src/test/run-all-tests.js
+npm test
 ```
 
-### With npm
-If you want to add to package.json:
-```json
-{
-  "scripts": {
-    "test-fast-download": "node src/test/run-all-tests.js"
-  }
-}
+This runs all `test/**/*.js` files recursively via Mocha and:
+- Enforces **90% line coverage per file** via NYC
+- Generates an HTML coverage report in `coverage/`
+- Generates a JUnit XML report in `reports/mocha/test-results.xml`
+- Timeout: 10 seconds per test
+
+### Linting
+
+```bash
+npm run lint
 ```
 
-Then run: `npm run test-fast-download`
+### Legacy integration tests (manual)
 
-## Integration Status
+```bash
+node test/run-all-tests.js
+```
 
-**All integration tests are ready and should pass** when:
-1. Import paths are correctly fixed
-2. Constants are properly defined
-3. All modules load without errors
-4. Methods are correctly exported
+## Directory Structure
 
-The tests cover the complete integration chain from constants through service layer to the final API, ensuring the fast-download-service works end-to-end with the ArchiveOfAnna class.
+```
+test/
+├── README.md
+├── helpers/
+│   └── test-setup.js                # Shared Sinon sandbox + Chai expect
+├── fixtures/
+│   ├── sample-settings.json
+│   ├── sample-recent-searches.json
+│   └── sample-files/
+│       ├── test-book.pdf
+│       └── test-doc.epub
+├── unit/
+│   ├── logger.test.js               # Winston logger config
+│   ├── recent-searches.test.js      # Recent searches manager
+│   ├── downloads-route.test.js      # Format utils + path traversal
+│   ├── access-middleware.test.js     # Access logging middleware
+│   └── helpers/
+│       ├── search-helper.test.js    # Search URL building + HTML parsing
+│       ├── file-helper.test.js      # Directory setup + file writing
+│       ├── axios-helper.test.js     # HTTP GET + stream downloads
+│       └── download-helper.test.js  # Download orchestration + source fallback
+├── run-all-tests.js                 # Legacy: runs integration tests
+├── test-service.js                  # Legacy: fast-download-service checks
+├── test-download-helper.js          # Legacy: download-helper checks
+├── test-integration.js              # Legacy: ArchiveOfAnna class checks
+└── verify-integration.js            # Legacy: fast-download verification
+```
+
+## Test Setup (test/helpers/test-setup.js)
+
+All unit tests share a common setup module that provides:
+- `sinon`, `chai`, `expect` — imported once, reused everywhere
+- `getSandbox()` — returns a Sinon sandbox that is automatically created in `beforeEach` and restored in `afterEach`
+
+Usage:
+
+```js
+const {expect, getSandbox} = require('../helpers/test-setup');
+
+describe('MyModule', () => {
+  it('should do something', () => {
+    const stub = getSandbox().stub(dependency, 'method').returns('value');
+    // ...
+    expect(result).to.equal('value');
+  });
+});
+```
+
+## Writing New Tests
+
+- Place unit tests in `test/unit/`, matching the source file structure (e.g. `src/helpers/foo.js` → `test/unit/helpers/foo.test.js`)
+- Import `test-setup.js` for Sinon sandboxing — no manual sandbox management needed
+- Use `expect` style assertions (Chai)
+- Stub external dependencies with `getSandbox().stub()`
+- Add fixture files to `test/fixtures/` as needed
+
+## Coverage
+
+NYC enforces **90% line coverage per file**. After running `npm test`, open `coverage/index.html` in a browser to view the detailed HTML report.
+
+## Testing Framework Summary
+
+| Component | Tool | Description |
+|-----------|------| ----------- |
+| Test Runner | Mocha v10.1.0 | Backend testing organizer | 
+| Coverage | NYC v15.1.0 (90% line coverage required) | Generates and manages code coverage reports |
+| Assertions | Chai v4.3.6 | Write BDD and TDD validations | 
+| Mocking | Sinon v21.0.1 | Unit testing simulator | 
+| E2E | Playwright v1.58.2 | Full end2end testing, primarily used for frontend validations |
+
+Commands
+- npm test - Unit tests + coverage (includes test/verify-integration.js)
+- npm run test:e2e - Playwright E2E tests
+- npm run test:all - Full suite (unit + E2E)
+
+Test Structure
+- test/unit/ - Unit tests (models, helpers, services, routes)
+- test/e2e/ - Playwright E2E tests
+- test/verify-integration.js - Integration verification
+

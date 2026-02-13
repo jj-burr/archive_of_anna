@@ -8,7 +8,7 @@ const components = [
     name: 'ArchiveOfAnna Class',
     path: '../archive-of-anna.js',
     check: () => {
-      const ArchiveOfAnna = require('../archive-of-anna');
+      const ArchiveOfAnna = require('../index');
       const methods = Object.getOwnPropertyNames(ArchiveOfAnna).filter(name => 
         typeof ArchiveOfAnna[name] === 'function' && 
         (name.includes('Md5') || name.includes('Download'))
@@ -18,9 +18,9 @@ const components = [
   },
   {
     name: 'Fast Download Service',
-    path: '../services/fast-download-service.js', 
+    path: '../src/services/fast-download-service.js', 
     check: () => {
-      const service = require('../services/fast-download-service');
+      const service = require('../src/services/fast-download-service');
       return typeof service.getDownloadUrls === 'function' &&
              typeof service.getIpfsLinks === 'function' &&
              typeof service.getAllDownloadSources === 'function';
@@ -28,18 +28,18 @@ const components = [
   },
   {
     name: 'Download Helper',
-    path: '../helpers/download-helper.js',
+    path: '../src/helpers/download-helper.js',
     check: () => {
-      const helper = require('../helpers/download-helper');
+      const helper = require('../src/helpers/download-helper');
       return typeof helper.downloadByMd5 === 'function' &&
              typeof helper.getIpfsLinksByMd5 === 'function';
     }
   },
   {
     name: 'Constants',
-    path: '../constants.js',
+    path: '../src/constants.js',
     check: () => {
-      const constants = require('../constants');
+      const constants = require('../src/constants');
       return constants.FAST_DOWNLOAD_API && constants.BASE_URI;
     }
   }
@@ -65,7 +65,7 @@ if (verified === total) {
   console.log('Fast-Download-Service is fully integrated!');
   console.log('\nAvailable API Methods:');
   
-  const ArchiveOfAnna = require('../archive-of-anna');
+  const ArchiveOfAnna = require('../index');
   const apiMethods = Object.getOwnPropertyNames(ArchiveOfAnna).filter(name => 
     typeof ArchiveOfAnna[name] === 'function' && 
     (name.includes('Md5') || name.includes('Download'))

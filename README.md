@@ -1,7 +1,5 @@
 # Archive Of Anna (previously Zlibrary)
 
-After the seizure notice by the USPS, ZLibrary can only be accessed via TOR. Anna's Archive (which I lovingly call Archive of Anna) can be considered as a backup to ZLibrary, Library Genesis and other shadow libraries, so converting this API to be a wrapper of Anna's Archive.
-
 Unofficial JavaScript client library and web interface for [Anna's Archive](https://annas-archive.li). Provides programmatic search, metadata fetching, and file downloads from shadow library sources. Can be used as an imported npm module **or** run as a standalone web application.
 
 ## Features

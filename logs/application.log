@@ -16,3 +16,204 @@
 {"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/search"}
 {"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 00:17:56","type":"access","url":"/downloads"}
 {"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 00:17:56","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 08:19:34","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 08:19:34","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:19:34"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:19:34"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:19:34"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 08:19:34","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 08:22:33","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 08:22:33","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:22:33"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:22:33"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:22:33"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 08:22:33","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 08:23:15","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 08:23:15","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:23:15"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:23:15"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 08:23:15"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 08:23:15","type":"access","url":"/test"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 08:24:08","url":"http://localhost:3000"}
+{"duration":52,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 08:24:16","type":"access","url":"/search"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 08:24:17","type":"access","url":"/downloads"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 08:24:18","type":"access","url":"/settings"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":304,"timestamp":"2026-02-12 08:24:19","type":"access","url":"/downloads"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":304,"timestamp":"2026-02-12 08:24:19","type":"access","url":"/search"}
+{"error":"connect ECONNABORTED 186.2.165.77:443","level":"error","message":"Search failed","query":"red rising","timestamp":"2026-02-12 08:24:39"}
+{"error":"connect ECONNABORTED 186.2.165.77:443","level":"error","message":"Search failed","query":"red rising","timestamp":"2026-02-12 08:24:40"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 08:24:40"}
+{"duration":1233,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 08:24:40","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 08:24:56"}
+{"duration":896,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 08:24:56","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 09:25:53","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 09:25:53","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 09:25:53"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 09:25:53"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 09:25:53"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 09:25:53","type":"access","url":"/test"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 09:55:48"}
+{"duration":1479,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 09:55:49","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 09:56:00","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 09:56:03"}
+{"duration":946,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 09:56:03","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 09:56:08"}
+{"duration":501,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 09:56:08","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":0,"timestamp":"2026-02-12 09:56:16"}
+{"duration":775,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 09:56:16","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 10:31:20","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":149,"timestamp":"2026-02-12 10:31:40"}
+{"duration":1328,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 10:31:40","type":"access","url":"/search"}
+{"duration":415,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 10:32:31","type":"access","url":"/download"}
+{"duration":21,"level":"info","message":"HTTP request","method":"GET","status":304,"timestamp":"2026-02-12 10:33:05","type":"access","url":"/settings"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":304,"timestamp":"2026-02-12 10:34:51","type":"access","url":"/downloads"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 10:34:52","type":"access","url":"/search"}
+{"error":"connect ETIMEDOUT 186.2.165.77:443","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 10:35:32"}
+{"duration":21046,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 10:35:32","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 10:58:22","url":"http://localhost:3000"}
+{"error":"connect ECONNABORTED 186.2.165.77:443","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 10:58:55"}
+{"duration":7044,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 10:58:55","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 11:14:41","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":148,"timestamp":"2026-02-12 11:14:47"}
+{"duration":1120,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 11:14:47","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":148,"timestamp":"2026-02-12 11:14:49"}
+{"duration":432,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 11:14:49","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":149,"timestamp":"2026-02-12 11:14:54"}
+{"duration":768,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 11:14:54","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:12:40","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":149,"timestamp":"2026-02-12 13:12:46"}
+{"duration":1573,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:12:46","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"red rising","resultCount":149,"timestamp":"2026-02-12 13:12:49"}
+{"duration":1622,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:12:49","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":148,"timestamp":"2026-02-12 13:12:55"}
+{"duration":660,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:12:55","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:19:14","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":148,"timestamp":"2026-02-12 13:19:15"}
+{"duration":1367,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:19:15","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:21:20","url":"http://localhost:3000"}
+{"error":"href.eq is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:23"}
+{"duration":1176,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:21:23","type":"access","url":"/search"}
+{"error":"href.eq is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:24"}
+{"duration":537,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:21:24","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:21:39","url":"http://localhost:3000"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:41"}
+{"duration":788,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:21:41","type":"access","url":"/search"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:42"}
+{"duration":841,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:21:42","type":"access","url":"/search"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:44"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:44"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:21:44"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":0,"timestamp":"2026-02-12 13:21:45"}
+{"duration":1010,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:21:45","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:22:21","url":"http://localhost:3000"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:22:24"}
+{"duration":1231,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:22:24","type":"access","url":"/search"}
+{"error":"href.attr is not a function","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:22:26"}
+{"duration":499,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:22:26","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:23:10","url":"http://localhost:3000"}
+{"error":"Assignment to constant variable.","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:23:12"}
+{"duration":863,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:23:12","type":"access","url":"/search"}
+{"error":"Assignment to constant variable.","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:23:14"}
+{"duration":526,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:23:14","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 13:23:59","url":"http://localhost:3000"}
+{"error":"Assignment to constant variable.","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:24:03"}
+{"duration":1101,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:24:03","type":"access","url":"/search"}
+{"error":"Assignment to constant variable.","level":"error","message":"Search failed","query":"harry potter","timestamp":"2026-02-12 13:24:05"}
+{"duration":682,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:24:05","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:25:14","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 13:25:14","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:25:14"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:25:14"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:25:14"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 13:25:14","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 13:38:12","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 13:38:12","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:38:13"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:38:13"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 13:38:13"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 13:38:13","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 14:00:23","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 14:00:23","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 14:00:23"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 14:00:23"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 14:00:23"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 14:00:23","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 15:33:26","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 15:33:26","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:33:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:33:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:33:26"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 15:33:26","type":"access","url":"/test"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 15:33:42","url":"http://localhost:3000"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":302,"timestamp":"2026-02-12 15:33:42","type":"access","url":"/"}
+{"duration":5,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:42","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:44","type":"access","url":"/search"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:44","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:44","type":"access","url":"/search"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:44","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-12 15:33:44","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 15:44:54","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 15:44:54","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:44:54"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:44:54"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:44:54"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 15:44:54","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 15:47:02","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 15:47:02","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:47:02"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:47:02"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 15:47:02"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 15:47:02","type":"access","url":"/test"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 16:31:54","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":148,"timestamp":"2026-02-12 16:31:58"}
+{"duration":1050,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:31:58","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 16:43:24","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:43:27"}
+{"duration":1292,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:43:27","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 16:43:56","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:43:59"}
+{"duration":882,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:43:59","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:43:59"}
+{"duration":604,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:43:59","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 16:53:58","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:54:02"}
+{"duration":1097,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:54:02","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:56:17","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 16:56:17","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:56:17"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:56:17"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:56:17"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 16:56:17","type":"access","url":"/test"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:58:26","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 16:58:26","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:58:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:58:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 16:58:26"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 16:58:26","type":"access","url":"/test"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-12 16:58:29","url":"http://localhost:3000"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:58:32"}
+{"duration":991,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:58:32","type":"access","url":"/search"}
+{"level":"info","message":"Search executed","query":"harry potter","resultCount":50,"timestamp":"2026-02-12 16:58:35"}
+{"duration":488,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 16:58:35","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"POST","status":200,"timestamp":"2026-02-12 17:52:26","type":"access","url":"/search"}
+{"duration":0,"level":"info","message":"HTTP request","method":"GET","status":404,"timestamp":"2026-02-12 17:52:26","type":"access","url":"/downloads"}
+{"error":"Connection timeout","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 17:52:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 17:52:26"}
+{"error":"Server unavailable","level":"warn","message":"Failed to download from ipfs, trying next source","source":"ipfs","timestamp":"2026-02-12 17:52:26"}
+{"level":"info","message":"test request","method":"GET","timestamp":"2026-02-12 17:52:26","type":"access","url":"/test"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-13 08:18:33","url":"http://localhost:3000"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":302,"timestamp":"2026-02-13 08:18:33","type":"access","url":"/"}
+{"duration":5,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:33","type":"access","url":"/search"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:34","type":"access","url":"/search"}
+{"duration":2,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:34","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:34","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:34","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 08:18:34","type":"access","url":"/search"}
+{"downloadPath":"C:\\Users\\jimmy\\Documents\\testdocker\\archive_of_anna\\downloads","level":"info","message":"Server started","secretKeyConfigured":true,"timestamp":"2026-02-13 09:01:52","url":"http://localhost:3000"}
+{"duration":3,"level":"info","message":"HTTP request","method":"GET","status":302,"timestamp":"2026-02-13 09:01:53","type":"access","url":"/"}
+{"duration":194,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:53","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:55","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:55","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:55","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:55","type":"access","url":"/search"}
+{"duration":1,"level":"info","message":"HTTP request","method":"GET","status":200,"timestamp":"2026-02-13 09:01:55","type":"access","url":"/search"}

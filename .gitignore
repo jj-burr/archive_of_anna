@@ -5,3 +5,7 @@ node_modules
 *.code-workspace
 /tmp
 web/settings.json
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

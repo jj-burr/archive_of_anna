@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search - Archive of Anna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <a href="/">Archive of Anna</a>
+    </div>
+    <div class="nav-links">
+      <a href="/search" class="nav-link active">Search</a>
+      <a href="/downloads" class="nav-link">Downloads</a>
+      <a href="/settings" class="nav-link">Settings</a>
+    </div>
+  </nav>
+  <main class="container">
+
+<h1>Search Anna's Archive</h1>
+
+<form method="POST" action="/search" class="search-form">
+  <div class="form-row">
+    <div class="form-group form-group-wide">
+      <label for="query">Search</label>
+      <input
+        type="text"
+        id="query"
+        name="query"
+        value="error test"
+        placeholder="Enter book title, author, or ISBN..."
+        required
+        autofocus
+      >
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="lang">Language</label>
+      <select id="lang" name="lang">
+        <option value="" selected>Any</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content Type</label>
+      <select id="content" name="content">
+        <option value="" selected>Any</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ext">File Type</label>
+      <select id="ext" name="ext">
+        <option value="" selected>Any</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="sort">Sort By</label>
+      <select id="sort" name="sort">
+        <option value="" selected>Most Relevant</option>
+      </select>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<div class="alert alert-error">
+  Search failed: Network error
+</div>
+
+  </main>
+  <footer class="footer">
+    <p>Archive of Anna &mdash; Unofficial client for Anna's Archive</p>
+  </footer>
+</body>
+</html>
