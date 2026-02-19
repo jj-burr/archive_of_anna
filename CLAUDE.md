@@ -1,26 +1,17 @@
-# CLAUDE.md
+Frontend local hosted web browser app that call's anna's archive to search for book titles, author or ISBN in epub, cbz, pdf formats. With an option to enable fast download when `SECRET_KEY` is populated in the config.cfg file. 
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+## Development Commands
 
-Unofficial JavaScript client library/wrapper for Anna's Archive (annas-archive.li). Provides programmatic search, metadata fetching, and file downloads from shadow library sources. Used as an imported npm module, not a standalone server.
+- `npm install` - Ensure npm is installed to start the project
+- `npm run lint` - Run to scan for dependencies or syntax errors
 
-## Commands
+## Testing 
+- `npm test` - Run full test suite (Mocha + NYC, requires 90% line coverage per file)
+- `node test/run-all-tests.js` - Update @run-all-tests.js when changing code base(add/delete/modify) functions occur.  
+- `npm run test:e2e` - Playwright E2E tests, when browser interaction or changes occur, create/update test and validate.
+- `npm run test:all` - Full suite (unit + E2E)
 
-```bash
-# Install dependencies
-npm install
-
-# Run full test suite (Mocha + NYC, requires 90% line coverage per file)
-npm test
-
-# Run linting (ESLint with Google style guide)
-npm run lint
-
-# Run integration tests manually
-node test/run-all-tests.js
-```
 
 There is no build step -- this is vanilla Node.js.
 
@@ -49,10 +40,11 @@ index.js                          # Entry point, exports ArchiveOfAnna class
 
 ## Key Patterns
 
-- `ArchiveOfAnna` is a static-only class -- constructor throws an error. All public methods are `static async`.
-- Download sources include IPFS, LibGen (RS/LI forks), and Z-Library Tor. Tor downloads are not yet implemented (throws error).
+- Search queries will primarily be the book title. Results will generate an object containing the MD5 value that will be used to generate the download query.
 - `fast-download-service.js` fetches download URLs from the JSON API or falls back to scraping the MD5 page.
 - Search results are parsed from HTML with Cheerio and mapped through model classes.
+- Ensure logging is utilize within the app for each interaction. 
+- Do not log `SECRET_KEY` or content from the @/src/config/.env file
 
 ## Code Style
 
